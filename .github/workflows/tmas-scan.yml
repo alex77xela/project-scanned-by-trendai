@@ -1,0 +1,26 @@
+name: TrendAI Code Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    name: TMAS Security Scan
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run TrendAI Artifact Scanner
+        uses: trendmicro/tmas-action@main
+        with:
+          api-key: ${{ secrets.TMAS_API_KEY }}
+          region: eu-central-1  # Adaptez votre région Vision One
+          artifact: dir:.
+          vulnerabilities: true
+          malware: true
+          secrets: true
+          evaluate-policy: true  # Active le blocage de PR si violation
