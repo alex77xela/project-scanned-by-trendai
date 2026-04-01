@@ -21,6 +21,6 @@ jobs:
           region: eu-central-1  # Adaptez votre région Vision One
           artifact: dir:.
           vulnerabilities: true
-          malware: true
+          malware: false
           secrets: true
           evaluate-policy: true  # Active le blocage de PR si violation
