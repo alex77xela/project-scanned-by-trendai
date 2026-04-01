@@ -14,13 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run TrendAI Artifact Scanner
-        uses: trendmicro/tmas-action@main
-        with:
-          api-key: ${{ secrets.TMAS_API_KEY }}
-          region: eu-central-1  # Adaptez votre région Vision One
-          artifact: dir:.
-          vulnerabilities: true
-          malware: false
-          secrets: true
-          evaluate-policy: true  # Active le blocage de PR si violation
+      - name: Download and install TMAS
+        run: |
+          curl -L https://github.com/trendmicro/tmas/releases/latest/download/tmas_Linux_x86_64.tar.gz \
+            -o tmas.tar.gz
+          tar -xzf tmas.tar.gz
+          chmod +x tmas
+          sudo mv tmas /usr/local/bin/tmas
+
+      - name: Run TMAS scan (vulnerabilities + secrets)
+        env:
+          TMAS_API_KEY: ${{ secrets.TMAS_API_KEY }}
+        run: |
+          tmas scan dir:. \
+            --vulnerabilities \
+            --secrets \
+            --region eu-central-1
