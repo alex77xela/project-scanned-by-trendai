@@ -16,7 +16,7 @@ jobs:
 
       - name: Download and install TMAS
         run: |
-          curl -L https://github.com/trendmicro/tmas/releases/latest/download/tmas_Linux_x86_64.tar.gz \
+          curl -L https://ast-cli.xdr.trendmicro.com/tmas-cli/latest/tmas-cli_Linux_x86_64.tar.gz \
             -o tmas.tar.gz
           tar -xzf tmas.tar.gz
           chmod +x tmas
