@@ -37,5 +37,5 @@ jobs:
           tmas scan dir:. \
             --vulnerabilities \
             --secrets \
-            --region eu-central-1
+            --region eu-central-1 \
             --evaluatePolicy
