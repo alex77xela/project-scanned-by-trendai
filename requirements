@@ -1,0 +1,6 @@
+# requirements.txt
+django==2.0.0          # CVE connues (injection SQL, XSS...)
+requests==2.6.0        # Vulnérable aux redirections malveillantes
+pillow==5.0.0          # Multiples CVEs critiques
+flask==0.10.1          # Très ancienne version
+pyyaml==3.13           # CVE-2017-18342 (code execution)
